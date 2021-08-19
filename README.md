@@ -50,6 +50,8 @@ Syntax:
 stop
 ```
 
+---
+
 ## Translate:
 
 - Translates the text into the specified language
@@ -113,8 +115,9 @@ E.g:
 lyrics ADMIT IT
 ```
 
+---
 
-# Info:
+## Info:
 
 - Gets information about a minecraft server
 - Aliases: status, server
@@ -134,7 +137,7 @@ info nucleoid.xyz
 ```
 
 
-# Launch
+## Launch
 
 - Starts the [aternos](https://aternos.org/) minecraft server specified in the config
 - Aliases: start
@@ -145,7 +148,7 @@ Syntax:
 launch
 ```
 
-# Stop
+## Stop
 
 - Stops the [aternos](https://aternos.org/) minecraft server specified in the config
 - Aliases: terminate
@@ -155,3 +158,8 @@ Syntax:
 ```
 stop
 ```
+
+---
+
+## Credits:
+- [Aternos-On-Discord](https://github.com/Mekolaos/Aternos-On-Discord) by [Mekolaos](https://github.com/Mekolaos) for the initial implementation to control an aternos server
