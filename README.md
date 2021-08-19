@@ -2,11 +2,12 @@
 
 # Commands:
 
-- All commands must be preceded by the command prefix, which by default is `/`, or by @ mentioning the bot
+- All commands must be preceded by the command prefix, which by default is backslash (\\), or by @ mentioning the bot
 
 ## Join:
 
-- Joins the specified channel.
+- Joins the specified voice channel
+- Aliases: summon, connect
 
 Syntax:
 
@@ -22,8 +23,8 @@ join General
 
 ## Play:
 
-- Plays from the specified url or searches for the terms on youtube
-- Requires the person who sends the message to be connected to a voice channel.
+- Plays from the specified url or searches for the terms on YouTube
+- Requires the person who sends the message to be connected to a voice channel
 - Should be able to play from any site that [youtube-dl supports.](https://yt-dl.org/supportedsites.html)
 
 Syntax:
@@ -35,12 +36,13 @@ play [url or something to search for]
 E.g:
 
 ```
-play Hayloft
+play Collared Greens
 ```
 
-## Stop:
+## Leave:
 
-- Disconencts from the voice channel.
+- Disconnects from the voice channel
+- Aliases: shut, disconnect, dc
 
 Syntax:
 
@@ -51,6 +53,7 @@ stop
 ## Translate:
 
 - Translates the text into the specified language
+- Aliases: trans, t
 
 Syntax:
 
@@ -66,7 +69,7 @@ E.g:
 trans german where is the child
 ```
 
-- If the `[target language]` parameter is left out or the language isn't recognised it will attepmt to translate the text into English.
+- If the `[target language]` parameter is left out or the language isn't recognised it will attempt to translate the text into English.
 
 E.g:
 
@@ -77,24 +80,26 @@ trans ich esse gern
 ## Define:
 
 - Defines the specified word(s)
-- If the defenitions are over 2000 characters it will split them up into smaller parts and send them individualy so the formating may be a little weird
+- If the definitions are over 2000 characters it will split them up into smaller parts and send them individually so the formatting may be a little weird (I might fix this at some point)
+- Aliases: def, d, meaning
 
 Syntax:
 
 ```
-d [words]
+define [words]
 ```
 
 E.g:
 
 ```
-d anarchist
+define arms
 ```
 
 ## Lyrics:
 
 - Returns the lyrics of the song
-- Like with `define` if the lyrics are over 2000 characters it will split them up into smaller parts and send them individualy so the formating may be a little weird
+- Like with `define` if the lyrics are over 2000 characters it will split them up into smaller parts and send them individual so the formatting may be a little weird (again I might fix this eventually)
+- Aliases: l, lyric
 
 Syntax:
 
@@ -105,5 +110,48 @@ lyrics [song title]
 E.g:
 
 ```
-lyrics Verbatim
+lyrics ADMIT IT
+```
+
+
+# Info:
+
+- Gets information about a minecraft server
+- Aliases: status, server
+
+Syntax
+
+```
+info [server ip]
+```
+
+- If the [server ip] parameter is left out it will return info about the default server from the config
+
+E.g:
+
+```
+info nucleoid.xyz
+```
+
+
+# Launch
+
+- Starts the [aternos](https://aternos.org/) minecraft server specified in the config
+- Aliases: start
+
+Syntax:
+
+```
+launch
+```
+
+# Stop
+
+- Stops the [aternos](https://aternos.org/) minecraft server specified in the config
+- Aliases: terminate
+
+Syntax:
+
+```
+stop
 ```

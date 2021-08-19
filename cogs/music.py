@@ -95,7 +95,7 @@ class Music(commands.Cog):
 		await ctx.send('Now playing: {}'.format(player.title))
 
 	# Disconnects voice
-	@commands.command(aliases=['shut', 'fuckoff'])
+	@commands.command(aliases=['shut', 'disconnect', 'dc'])
 	async def leave(self, ctx):
 
 		await ctx.voice_client.disconnect()

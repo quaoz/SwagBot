@@ -71,7 +71,6 @@ class Server(commands.Cog):
 
 	@commands.command(aliases=['start'])
 	async def launch(self, ctx):
-		""" Launches the Minecraft Server"""
 		server_status = get_status()
 
 		if server_status == "Offline":

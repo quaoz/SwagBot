@@ -134,8 +134,3 @@ class Words(commands.Cog):
 	async def on_message(self, message):
 		if message.author == client.user:
 			return
-
-		# Mao
-		elif ' mao' in message.content.lower() or message.content.lower().startswith(
-				'mao ') or message.content.lower() == 'mao':
-			await message.channel.send()
