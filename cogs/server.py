@@ -6,7 +6,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from mcstatus import MinecraftServer
 
-from util.aternos import get_status, get_server_info, stop_server
+from util.aternos import get_status, get_server_info, stop_server, restart_server
 from util.aternos import start_server
 
 load_dotenv('.env')
@@ -22,10 +22,6 @@ class Server(commands.Cog):
 	@commands.command(aliases=['status', 'server'])
 	async def info(self, ctx, override_server=''):
 		async with ctx.typing():
-			# restart
-			# hard restart
-			# stop
-
 			if override_server == '':
 				server = MinecraftServer.lookup(Default_Server)
 				ping = server.ping()
@@ -119,3 +115,17 @@ class Server(commands.Cog):
 
 		else:
 			await ctx.send("The server is already Offline.")
+
+	@commands.command(aliases=['reboot'])
+	async def restart(self, ctx):
+		server_status = get_status()
+
+		if server_status == 'Online':
+			await ctx.send("Restarting the server...")
+			await restart_server()
+
+		elif server_status == 'Loading ...':
+			await ctx.send(f"The server is currently loading. Please try again later.")
+
+		else:
+			await ctx.send("The server is Offline.")

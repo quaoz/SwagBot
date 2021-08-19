@@ -152,6 +152,11 @@ async def stop_server():
 	element = driver.find_element_by_id('stop')
 	element.click()
 
+async def restart_server():
+	""" Restarts server from aternos panel """
+	element = driver.find_element_by_id('restart')
+	element.click()
+
 
 def quit_browser():
 	""" Quits the browser driver cleanly """

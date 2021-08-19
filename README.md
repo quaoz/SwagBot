@@ -148,6 +148,7 @@ Syntax:
 launch
 ```
 
+
 ## Stop
 
 - Stops the [aternos](https://aternos.org/) minecraft server specified in the config
@@ -159,6 +160,17 @@ Syntax:
 stop
 ```
 
+
+## Restart
+
+- Restarts the [aternos](https://aternos.org/) minecraft server specified in the config
+- Aliases: reboot
+
+Syntax:
+
+```
+stop
+```
 ---
 
 ## Credits:
