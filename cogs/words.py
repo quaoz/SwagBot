@@ -1,5 +1,7 @@
 import os
+import random
 from time import sleep
+import typing
 
 import discord
 from PyDictionary import PyDictionary
@@ -54,7 +56,6 @@ class Words(commands.Cog):
 
 			else:
 				await ctx.send(lyrics)
-			return
 
 	# Defines a word
 	@commands.command(aliases=['def', 'd', 'meaning'])
@@ -87,7 +88,6 @@ class Words(commands.Cog):
 
 			else:
 				await ctx.send(message)
-			return
 
 	# Translator
 	@commands.command(aliases=['translate', 't'])
@@ -127,7 +127,15 @@ class Words(commands.Cog):
 				await ctx.send(
 					f'"{translation.origin}" translated from {constants.LANGUAGES[source_language]} ({translation.src}) '
 					f'to {constants.LANGUAGES[target_language]} ({translation.dest}) is "{translation.text}"')
-			return
+
+	# Random number generator
+	@commands.command(aliases=['r', 'rand'])
+	async def random(self, ctx, upper_bound, lower_bound: typing.Optional[int] = 0):
+		async with ctx.typing():
+			if upper_bound > lower_bound:
+				await ctx.send(random.randint(int(lower_bound), int(upper_bound)))
+			else:
+				await ctx.send(random.randint(int(upper_bound), int(lower_bound)))
 
 	# Non-command messages
 	@Cog.listener()

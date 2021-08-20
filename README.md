@@ -97,6 +97,7 @@ E.g:
 define arms
 ```
 
+
 ## Lyrics:
 
 - Returns the lyrics of the song
@@ -113,6 +114,25 @@ E.g:
 
 ```
 lyrics ADMIT IT
+```
+
+## Random:
+
+- Generates a random number
+- Aliases: r, rand
+
+Syntax:
+
+```
+random [number one] [number two]
+```
+
+- If the [number two] parameter is left out it will pick a number between zero and the given number
+
+E.g:
+
+```
+random 1000 100
 ```
 
 ---
@@ -136,7 +156,6 @@ E.g:
 info nucleoid.xyz
 ```
 
-
 ## Launch
 
 - Starts the [aternos](https://aternos.org/) minecraft server specified in the config
@@ -148,7 +167,6 @@ Syntax:
 launch
 ```
 
-
 ## Stop
 
 - Stops the [aternos](https://aternos.org/) minecraft server specified in the config
@@ -159,7 +177,6 @@ Syntax:
 ```
 stop
 ```
-
 
 ## Restart
 
