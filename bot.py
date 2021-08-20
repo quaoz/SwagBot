@@ -16,7 +16,7 @@ from util.aternos import connect_account, adblock_bypass, refresh_browser
 
 load_dotenv('.env')
 
-Discord_Token = os.getenv('BOT_KEY')
+Discord_Token = os.getenv('BOT_TOKEN')
 
 
 @tasks.loop(seconds=5.0)

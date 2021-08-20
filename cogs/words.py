@@ -14,7 +14,7 @@ import lyricsgenius
 
 load_dotenv('.env')
 
-Genius_Token = os.getenv('GENIUS_KEY')
+Genius_Token = os.getenv('GENIUS_TOKEN')
 
 # Lyrics time
 genius = lyricsgenius.Genius(Genius_Token)
