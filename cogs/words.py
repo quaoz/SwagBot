@@ -106,14 +106,21 @@ class Words(commands.Cog):
 
 					message += '\n'
 
-			# Checks if the definition(s) are over the discord maximum character limit
-			# If they are it separates them into chucks which it sends individually
-			if len(message) >= 2000:
-				for i in range(0, int(len(message) / 2000)):
-					message_split = message[i * 2000: i * 2000 + 1999]
-					embed = Embed(title=f'Definition pt{i + 1}', description=message_split)
-					await ctx.send(embed=embed)
+			message_split = message.split('\n')
+			message_batch = ''
+			counter = 1
 
+			if len(message) >= 2000:
+				for line in message_split:
+					if len(message_batch) + len(line) >= 2000:
+						embed = Embed(title=f'Definition pt{counter}', description=message_batch)
+						await ctx.send(embed=embed)
+						counter += 1
+						message_batch = ''
+					else:
+						message_batch += line + '\n'
+				embed = Embed(title=f'Definition pt{counter}', description=message_batch)
+				await ctx.send(embed=embed)
 			else:
 				embed = Embed(title=f'Definition', description=message)
 				await ctx.send(embed=embed)
