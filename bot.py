@@ -7,13 +7,14 @@ from discord.ext import commands, tasks
 from dotenv import load_dotenv
 from selenium.common.exceptions import ElementNotInteractableException
 
+from cogs.games import Games
 from cogs.music import Music
 from cogs.server import Server
 from cogs.words import Words
 from util.aternos import adblock
 from util.aternos import connect_account, adblock_bypass, refresh_browser
 
-load_dotenv('../../My Discord Bot/.env')
+load_dotenv('.env')
 
 Discord_Token = os.getenv('BOT_KEY')
 
@@ -49,11 +50,12 @@ if __name__ == '__main__':
 		if adblock:
 			adblock_wall.start()
 
-		reset_browser.start()
 
+	reset_browser.start()
 
 	# Runs bot
 	bot.add_cog(Music(bot))
 	bot.add_cog(Words(bot))
 	bot.add_cog(Server(bot))
+	bot.add_cog(Games(bot))
 	bot.run(Discord_Token)
