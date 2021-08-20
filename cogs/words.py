@@ -5,8 +5,8 @@ import typing
 
 import discord
 from PyDictionary import PyDictionary
+from discord import Embed
 from discord.ext import commands
-from discord.ext.commands import Cog
 from dotenv import load_dotenv
 from googletrans import constants, Translator
 
@@ -38,6 +38,19 @@ class Words(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+	@commands.command()
+	async def help(self, ctx):
+		embed = Embed(title='Help', description='You can view the list of available commands and their syntax [here]('
+												'https://github.com/quaoz/GaymerBot#readme)')
+		await ctx.send(embed=embed)
+
+	@commands.command(aliases=['license'])
+	async def source(self, ctx):
+		embed = Embed(title='Source code', description='My source code is available [here]('
+												'https://github.com/quaoz/GaymerBot), I\'m licensed under [LGLPv3]('
+												'https://github.com/quaoz/GaymerBot/blob/main/LICENSE)')
+		await ctx.send(embed=embed)
+
 	# Gets the lyrics of a song
 	@commands.command(aliases=["l", "lyric"])
 	async def lyrics(self, ctx, *, title):
@@ -47,15 +60,29 @@ class Words(commands.Cog):
 			song = genius.search_song(title)
 			lyrics = song.lyrics
 
-			# Checks if the lyrics are over the discord maximum character limit
-			# If they are it separates them into chucks which it sends individually
-			if len(lyrics) >= 2000:
-				for i in range(0, int(len(lyrics) / 2000)):
-					lyrics_split = lyrics[i * 2000: i * 2000 + 1999]
-					await ctx.send(lyrics_split)
+			lyrics_split = lyrics.split('\n')
+			lyrics_batch = ''
+			counter = 1
 
+			# Checks if the lyrics are over the discord maximum character limit
+			# If they are it separates them into chunks which it sends individually
+			if len(lyrics) >= 2000:
+				for line in lyrics_split:
+					if len(lyrics_batch) + len(line) >= 2000:
+						embed = Embed(title=f'Lyrics for {song.full_title}, pt{counter}', description=lyrics_batch)
+						embed.set_thumbnail(url=song.header_image_thumbnail_url)
+						await ctx.send(embed=embed)
+						counter += 1
+						lyrics_batch = ''
+					else:
+						lyrics_batch += line + '\n'
+				embed = Embed(title=f'Lyrics for {song.full_title}, pt{counter}', description=lyrics_batch)
+				embed.set_thumbnail(url=song.header_image_thumbnail_url)
+				await ctx.send(embed=embed)
 			else:
-				await ctx.send(lyrics)
+				embed = Embed(title=f'Lyrics for {song.full_title}', description=lyrics)
+				embed.set_thumbnail(url=song.header_image_thumbnail_url)
+				await ctx.send(embed=embed)
 
 	# Defines a word
 	@commands.command(aliases=['def', 'd', 'meaning'])
@@ -84,10 +111,12 @@ class Words(commands.Cog):
 			if len(message) >= 2000:
 				for i in range(0, int(len(message) / 2000)):
 					message_split = message[i * 2000: i * 2000 + 1999]
-					await ctx.send(message_split)
+					embed = Embed(title=f'Definition pt{i + 1}', description=message_split)
+					await ctx.send(embed=embed)
 
 			else:
-				await ctx.send(message)
+				embed = Embed(title=f'Definition', description=message)
+				await ctx.send(embed=embed)
 
 	# Translator
 	@commands.command(aliases=['translate', 't'])
@@ -124,21 +153,21 @@ class Words(commands.Cog):
 				if not valid_language:
 					await ctx.send('Target language not specified or unknown, translating to english.')
 
-				await ctx.send(
-					f'"{translation.origin}" translated from {constants.LANGUAGES[source_language]} ({translation.src}) '
-					f'to {constants.LANGUAGES[target_language]} ({translation.dest}) is "{translation.text}"')
+				embed = Embed(title='Translation',
+							  description=f'"{translation.origin}" translated from {constants.LANGUAGES[source_language]} '
+										  f'({translation.src}) to {constants.LANGUAGES[target_language]} ({translation.dest}) is '
+										  f'"{translation.text}"')
+				await ctx.send(embed=embed)
 
 	# Random number generator
 	@commands.command(aliases=['r', 'rand'])
 	async def random(self, ctx, upper_bound, lower_bound: typing.Optional[int] = 0):
 		async with ctx.typing():
-			if upper_bound > lower_bound:
-				await ctx.send(random.randint(int(lower_bound), int(upper_bound)))
-			else:
-				await ctx.send(random.randint(int(upper_bound), int(lower_bound)))
-
-	# Non-command messages
-	@Cog.listener()
-	async def on_message(self, message):
-		if message.author == client.user:
-			return
+			if upper_bound.isnumeric():
+				if int(upper_bound) > lower_bound:
+					embed = Embed(title=f'{random.randint(int(lower_bound), int(upper_bound))}',
+								  description=f'Random number from {upper_bound} to {lower_bound}')
+				else:
+					embed = Embed(title=f'{random.randint(int(upper_bound), int(lower_bound))}',
+								  description=f'Random number from {lower_bound} to {upper_bound}')
+				await ctx.send(embed=embed)

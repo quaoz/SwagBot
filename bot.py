@@ -54,6 +54,7 @@ if __name__ == '__main__':
 	reset_browser.start()
 
 	# Runs bot
+	bot.remove_command('help')
 	bot.add_cog(Music(bot))
 	bot.add_cog(Words(bot))
 	bot.add_cog(Server(bot))
