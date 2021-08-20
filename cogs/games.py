@@ -19,8 +19,8 @@ class Games(commands.Cog):
 		self.grid = [[' ' for _ in range(9)] for _ in range(6)]
 		self.bot = bot
 
-	@commands.command(aliases=['c4', 'connect4', 'connectfour'])
-	async def connect_four_command(self, ctx):
+	@commands.command(aliases=['c4', 'connect4', 'connectfour', 'connect-four'])
+	async def connect_four(self, ctx):
 		if self.active_connect_four_game:
 			return await ctx.send('There is already an active game')
 		else:

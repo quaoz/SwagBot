@@ -190,5 +190,22 @@ stop
 ```
 ---
 
+## Connect-Four
+
+- Starts a connect-four game and the mentioned person
+- Aliases: c4, connect4, connectfour
+
+Syntax
+
+```
+connect-four [user]
+```
+
+E.g:
+
+```
+connect-four @steve
+```
+
 ## Credits:
 - [Aternos-On-Discord](https://github.com/Mekolaos/Aternos-On-Discord) by [Mekolaos](https://github.com/Mekolaos) for the initial implementation to control an aternos server
