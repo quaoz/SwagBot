@@ -51,6 +51,26 @@ stop
 ```
 
 ---
+## Help:
+
+- Displays link to this README
+
+Syntax:
+
+```
+help
+```
+
+## Source:
+
+- Displays link to this GitHub repo and states the code license
+- Aliases: license
+
+Syntax:
+
+```
+source
+```
 
 ## Translate:
 
