@@ -1,4 +1,4 @@
-# GaymerBot
+# My Discord Bot
 
 # Commands:
 
@@ -206,7 +206,7 @@ stop
 Syntax:
 
 ```
-stop
+restart
 ```
 ---
 
