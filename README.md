@@ -1,3 +1,5 @@
+Replaced by [sigma_bot](https://github.com/quaoz/sigma_bot), no longer worked on
+
 # My Discord Bot
 
 # Commands:
